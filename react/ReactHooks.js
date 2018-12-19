@@ -12,3 +12,9 @@
  * 这可能会非常麻烦。在很多典型的 React 组件中，你可以在 React DevTool 里看到我们的组件被层层叠叠的 `providers`、`consumers`、
  * `高阶组件`、`render props`和其他抽象层包裹。当然你可以通过筛选功能把它们全部都过滤掉
 */
+
+
+
+export function useState(initialState) {
+
+}
