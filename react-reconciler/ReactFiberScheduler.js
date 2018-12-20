@@ -393,5 +393,20 @@ function completeRoot(root, finishedWork, expirationTime) {
       return;
     }
   }
+
+  // Commit the root.
+  root.finishedWork = null;
+  // Check if this is a nested update (a sync update scheduled during the
+  // commit phase).
+  if (root === lastCommittedRootDuringThisBatch) {
+    // If the next root is the same as the previous root, this is a nested
+    // update. To prevent an infinite loop, increment the nested update count.
+    nestedUpdateCount++;
+  } else {
+    // Reset whenever we switch roots.
+    lastCommittedRootDuringThisBatch = root;
+    nestedUpdateCount = 0;
+  }
+  commitRoot(root, finishedWork);
 }
 
